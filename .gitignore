@@ -1,0 +1,5 @@
+# dependencies installable with npm-install
+node_modules
+
+# error log
+log*

@@ -1,4 +1,7 @@
-module.exports = {
+var globals = require('./globals.js')
+var fs = require('fs')  
+
+var objectify = {
   common: function (string, keys) {
     string = string.split('\n')
     var possible_keys = '^(' + keys.join('|') + ')'
@@ -35,3 +38,22 @@ module.exports = {
   }
 
 }
+
+var os = {
+  get_os: function (name) {
+    var linux = /lsl|lslv/i
+    var windows = /lsw|lswv/i
+    if (name.match(linux)) return 'linux'
+    else if (name.match(windows)) return 'win32'
+  }
+
+}
+
+var logger = {
+  logit: function (string) {
+    if (globals.verbose) {console.log(string)}
+    fs.appendFile(globals.log, string+'\n')
+  }
+}
+
+module.exports = {objectify, os, logger}
