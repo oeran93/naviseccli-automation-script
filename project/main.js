@@ -23,7 +23,6 @@ const server_os = process.platform
 const hostname = require('os').hostname()
 const log = require('./tools.js').logger
 const fs = require('fs')
-const cron = require('node-cron')
 
 naviseccli.list_storagegroups()
   .then(groups => {
