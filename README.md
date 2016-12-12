@@ -14,5 +14,5 @@ When it is done, all dependencies should be installed
 
 Now you can run the program with
 
-`node main'
+`node main`
 
