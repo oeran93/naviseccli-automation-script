@@ -9,7 +9,6 @@
   "author": "Nicola Pedretti",
   "license": "ISC",
   "dependencies": {
-    "standard-format": "^2.2.3",
     "underscore": "^1.8.3"
   }
 }
