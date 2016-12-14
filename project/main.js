@@ -23,8 +23,20 @@ const server_os = process.platform
 const hostname = require('os').hostname()
 const log = require('./tools.js').logger
 const fs = require('fs')
+const EventEmitter = require('events').EventEmitter
+const emitter = new EventEmitter()
+const globals = require('./globals.js')
 
-naviseccli.list_storagegroups()
+/*Command line arguments settings*/
+emitter.on('setup', (cmd_line_args) => {
+  for (let i = 2; i < cmd_line_args.length; i++) {
+    globals[cmd_line_args[i].replace('-','')] = cmd_line_args[++i]
+  }
+})
+
+/*Routine*/
+emitter.on('start_routine', () => {
+  naviseccli.list_storagegroups()
   .then(groups => {
     groups = groups.filter(g => os.get_os(g['Storage Group Name']) === server_os)
     groups.forEach(group => {
@@ -37,8 +49,8 @@ naviseccli.list_storagegroups()
             .then(snap => {
               naviseccli.list_mp_uid(lun+'_mp')
               .then(mp => {
-                  mp = mp[0]['LOGICAL UNIT NUMBER']
-                  naviseccli.attach_snap(snap,mp)
+                mp = mp[0]['LOGICAL UNIT NUMBER']
+                naviseccli.attach_snap(snap,mp)
               })
             })
           })
@@ -46,9 +58,11 @@ naviseccli.list_storagegroups()
       })
     })
   })
+})
 
 
-
+emitter.emit('setup',process.argv)
+emitter.emit('start_routine')
 
 
 

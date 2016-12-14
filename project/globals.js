@@ -6,6 +6,6 @@ module.exports = {
 	/*naviseccli server ip*/
 	server_ip: env.naviseccli_server,
 	/*logs to console if true*/
-	verbose: false
+	verbose: 'no'
 
 }

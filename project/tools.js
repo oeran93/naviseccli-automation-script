@@ -51,7 +51,7 @@ var os = {
 
 var logger = {
   logit: function (string) {
-    if (globals.verbose) {console.log(string)}
+    if (globals.verbose === 'yes') console.log(string)
     fs.appendFile(globals.log, string+'\n')
   }
 }
