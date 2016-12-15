@@ -101,12 +101,15 @@ module.exports = {
 }
 
 function call_api (api_call, args1, modifier = (x) => x , args2 = []) {
-  log.logit("Calling: "+api_call.toString())
   return new Promise((resolve, reject) => {
     exec(api_call.apply(this,args1),
       (err, stdout, stderr) => {
-        //at the moment we are not breaking on any error!!
-        log.logit("response: " + stdout)
+        log.logit("Calling: "+api_call.name)
+        if (err) {
+          log.logit("response: error") //at the moment we are not breaking on any error!!
+          //reject(stdout)
+        }
+        else log.logit("response: success")
         resolve(modifier.call(this,stdout,args2))
       }
     )

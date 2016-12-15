@@ -11,5 +11,5 @@ module.exports = {
   list_mp_uid: (mp) => `naviseccli -h ${globals.server_ip} lun -list -name ${mp} -uid`,
   attach_mp: (storagegroup, mp_id, new_id) => `naviseccli -h ${globals.server_ip}  storagegroup -addhlu -gname ${storagegroup} -alu ${mp_id} -hlu ${new_id}`,
   attach_snap: (name, mp_id) => `naviseccli -h ${globals.server_ip} snap -attach -id ${name} -res ${mp_id}`,
-  detach_snap: (name) => `naviseccli -h ${globals.server_ip} snap -detach -id ${name}`,
+  detach_snap: (name) => `naviseccli -h ${globals.server_ip} snap -detach -id ${name} -o`,
 }

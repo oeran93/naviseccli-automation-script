@@ -1,7 +1,9 @@
-var globals = require('./globals.js')
-var fs = require('fs')  
+const globals = require('./globals.js')
+const fs = require('fs')
+const server_os = process.platform
 
 var objectify = {
+
   common: function (string, keys) {
     string = string.split('\n')
     var possible_keys = '^(' + keys.join('|') + ')'
@@ -40,6 +42,7 @@ var objectify = {
 }
 
 var os = {
+
   get_os: function (name) {
     var linux = /lsl|lslv/i
     var windows = /lsw|lswv/i
@@ -50,10 +53,30 @@ var os = {
 }
 
 var logger = {
+
   logit: function (string) {
     if (globals.verbose === 'yes') console.log(string)
     fs.appendFile(globals.log, string+'\n')
   }
+
 }
 
-module.exports = {objectify, os, logger}
+var filter = {
+  
+  /*
+  * Filters groups by os and user input
+  * @param groups {array}
+  * @return {array} filtered groups
+  */
+  groups: function (groups) {
+    return groups.filter(g => {
+      return  os.get_os(g['Storage Group Name']) === server_os 
+                &&
+              (new RegExp(globals.filtered_sgs,'i')).test(g['Storage Group Name'])
+                && g['Storage Group Name'] != globals.server_sg
+    })
+  }
+
+}
+
+module.exports = {objectify, os, logger, filter}

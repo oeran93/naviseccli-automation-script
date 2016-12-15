@@ -5,7 +5,10 @@ module.exports = {
 	log: 'log.txt',
 	/*naviseccli server ip*/
 	server_ip: env.naviseccli_server,
+	/*backup server storage group name*/
+	server_sg: env.backup_server_sg,
 	/*logs to console if true*/
-	verbose: 'no'
-
+	verbose: 'no',
+	/*storage groups to back up*/
+	filtered_sgs: '.'
 }
