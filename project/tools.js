@@ -1,6 +1,7 @@
 const globals = require('./globals.js')
 const fs = require('fs')
 const server_os = process.platform
+const sys_os = require('os')
 
 var objectify = {
 
@@ -47,7 +48,7 @@ var tools = {
     let lines = string.split('\n')
     let reg = /disk [0-9]+/i
     lines = lines.filter(line => reg.test(line))
-    return lines.length
+    return lines.length+1
   }
 
 }
@@ -67,7 +68,7 @@ var logger = {
 
   logit: function (string) {
     if (globals.verbose === 'yes') console.log(string)
-    fs.appendFile(globals.log, string+'\n')
+    fs.appendFile(globals.log, string+sys_os.EOL)
   }
 
 }

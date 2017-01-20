@@ -12,5 +12,5 @@ module.exports = {
 	/*storage groups to back up*/
 	filtered_sgs: '.',
 	/*name of diskpart script*/
-	disk_script: 'diskpart_script.txt'
+	disk_script: 'diskpart-script.txt'
 }

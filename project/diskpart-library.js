@@ -14,12 +14,13 @@ module.exports = {
  },
 
  offline_online_disks: function (disk_num) {
+  log.logit('working on disk' + disk_num)
   if (disk_num < 0) return
   let command = 'sel disk '+disk_num+os.EOL
   command += 'offline disk noerr'+os.EOL
   command += 'online disk noerr'+os.EOL
   fs.writeFileSync(globals.disk_script, command)
-  call_diskpart().then(this.offline_online_disks(disk_num--))
+  call_diskpart().then( x => this.offline_online_disks(--disk_num))
  }
 
 }
