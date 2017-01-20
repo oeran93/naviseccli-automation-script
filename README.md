@@ -24,8 +24,8 @@
 * After you download this package make sure npm and node are installed.
 * Once that is done go into the main project directory and run `npm install` to install dependecies.
 
-## Run the Script
-* Running `node main` in the naviseccli-lib/project directory will start the script
+## Run the Script to create snaps
+* Running `node create-snaps` in the naviseccli-lib/project directory will start the script
 * The following command line args can be specified
 	* -verbose
 		* description: should the script console.log details of execution ?
@@ -43,3 +43,6 @@
 		* description: storage group to back up. if passed, only listed storage groups will be backed up
 		* value: any storage group name. to pass multiple storage names separate them with a "|" simbol. e.g. name1|name2|name3
 		* default: all storage groups
+
+## Run the Script to reattach disks
+* Running `node reattach-disks` in the naviseccli-lib/project directory will start the script
