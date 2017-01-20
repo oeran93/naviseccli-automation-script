@@ -3,6 +3,7 @@ const log = require('./tools.js').logger
 const tools = require('./tools.js').tools
 const globals = require('./globals')
 const fs = require('fs')
+const os = require('os')
 
 module.exports = {
 
@@ -14,9 +15,9 @@ module.exports = {
 
  offline_online_disks: function (disk_num) {
   [...Array(disk_num).keys()].map(num => {
-    let command = 'sel disk '+num+'\n'
-    command += 'offline disk noerr'+'\n'
-    command += 'online disk noerr'+'\n'
+    let command = 'sel disk '+num+os.EOL
+    command += 'offline disk noerr'+os.EOL
+    command += 'online disk noerr'+os.EOL
     fs.writeFileSync(globals.disk_script, command)
     call_diskpart()
   })
