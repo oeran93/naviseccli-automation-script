@@ -1,0 +1,3 @@
+sel disk 4
+offline disk noerr
+online disk noerr

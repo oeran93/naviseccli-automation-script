@@ -1,4 +1,4 @@
-const naviseccli = require('./library.js')
+const naviseccli = require('./naviseccli-library.js')
 const EventEmitter = require('events').EventEmitter
 const emitter = new EventEmitter()
 const globals = require('./globals.js')

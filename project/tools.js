@@ -41,6 +41,17 @@ var objectify = {
 
 }
 
+var tools = {
+
+  count_num_disks: function (string) {
+    let lines = string.split('\n')
+    let reg = /disk [0-9]+/i
+    lines = lines.filter(line => reg.test(line))
+    return lines.length
+  }
+
+}
+
 var os = {
 
   get_os: function (name) {
@@ -79,4 +90,4 @@ var filter = {
 
 }
 
-module.exports = {objectify, os, logger, filter}
+module.exports = {objectify, os, logger, filter, tools}
