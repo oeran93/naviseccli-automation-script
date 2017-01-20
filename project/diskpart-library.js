@@ -14,13 +14,12 @@ module.exports = {
  },
 
  offline_online_disks: function (disk_num) {
-  [...Array(disk_num).keys()].map(num => {
-    let command = 'sel disk '+num+os.EOL
-    command += 'offline disk noerr'+os.EOL
-    command += 'online disk noerr'+os.EOL
-    fs.writeFileSync(globals.disk_script, command)
-    call_diskpart()
-  })
+  if (disk_num < 0) return
+  let command = 'sel disk '+disk_num+os.EOL
+  command += 'offline disk noerr'+os.EOL
+  command += 'online disk noerr'+os.EOL
+  fs.writeFileSync(globals.disk_script, command)
+  call_diskpart().then(this.offline_online_disks(disk_num--))
  }
 
 }
